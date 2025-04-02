@@ -1,18 +1,18 @@
 <h1 align="center">
-  <a href="https://novalang.example"><img src="./.github/logo.jpg" alt="Nova Lang" height="150px"></a>
+  <a href="https://github.com/deep-neural/nova-lang"><img src="./.github/logo.jpg" alt="Nova Lang" height="150px"></a>
   <br>
   Nova Lang
   <br>
 </h1>
 <h4 align="center">A modern AI-first programming language with memory safety and concurrency at its core</h4>
 <p align="center">
-    <a href="https://novalang.example"><img src="https://img.shields.io/badge/NovaLang-AI-5865F2.svg?longCache=true" alt="Nova Lang" /></a>
-  <a href="https://datatracker.ietf.org/doc/html/rfc9000"><img src="https://img.shields.io/static/v1?label=Version&message=1.0.0&color=brightgreen" /></a>
-  <a href="https://datatracker.ietf.org/doc/html/rfc9001"><img src="https://img.shields.io/static/v1?label=Safety&message=Memory-Safe&color=brightgreen" /></a>
-  <a href="https://datatracker.ietf.org/doc/html/rfc9002"><img src="https://img.shields.io/static/v1?label=Paradigm&message=Multi-Paradigm&color=brightgreen" /></a>
-  <a href="https://datatracker.ietf.org/doc/html/rfc9114"><img src="https://img.shields.io/static/v1?label=Release&message=Stable&color=brightgreen" /></a>
+    <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/badge/NovaLang-AI-5865F2.svg?longCache=true" alt="Nova Lang" /></a>
+  <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/static/v1?label=Version&message=1.0.0&color=brightgreen" /></a>
+  <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/static/v1?label=Safety&message=Memory-Safe&color=brightgreen" /></a>
+  <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/static/v1?label=Paradigm&message=Multi-Paradigm&color=brightgreen" /></a>
+  <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/static/v1?label=Release&message=Stable&color=brightgreen" /></a>
   <br>
-    <a href="https://github.com/novalang/nova"><img src="https://img.shields.io/static/v1?label=Build&message=Documentation&color=brightgreen" /></a>
+    <a href="https://github.com/deep-neural/nova-lang"><img src="https://img.shields.io/static/v1?label=Build&message=Documentation&color=brightgreen" /></a>
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-5865F2.svg" alt="License: MIT" /></a>
 </p>
 <br>
