@@ -1,0 +1,30 @@
+
+// sora packages are just ment to install, config or build modules for a compile program
+// - can't have virtual imports
+
+
+// this is your config for virtual package 
+
+module interface {
+    virtual: true,
+    image: "ubuntu:24.04",
+}
+
+
+// local system imports
+import "stdio"
+import "stdlib"
+import "unistd"
+import "package"
+
+
+[virtual imports follow this flow]
+// 1: the package manager starts the container
+// 2: the package manager creates the mount 
+// 3: the package runs the package.sc
+// 4: the package is now ready aka libs .a, .so .h  
+
+func main() {
+   system("apt-get install libx11-dev");
+   // do other custom stuff in here like config 100s of custom install and cmake
+}

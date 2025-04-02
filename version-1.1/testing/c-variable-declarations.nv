@@ -1,0 +1,56 @@
+
+int main() {
+
+
+    // This is a string literal. In C, 
+    // a string literal like "ok" is actually stored in memory as an array of characters
+
+    const char *str = "ok";
+
+
+    char char_literal = 'X';
+    char char_as_num = 65;
+
+    signed char s_char_val = -50;
+    signed char s_char_hex = 0xFE;
+
+    unsigned char u_char_val = 200;
+    unsigned char u_char_hex = 0xA5;
+
+    short short_val = 15000;
+    short short_hex = 0x3A98;
+    short neg_short = -20000;
+
+    unsigned short u_short_val = 50000;
+    unsigned short u_short_hex = 0xC350;
+
+    int int_val = 1000000;
+    int int_hex = 0x000F4240;
+    int neg_int = -500000000;
+
+    unsigned int u_int_val = 3000000000;
+    unsigned int u_int_hex = 0xB2D05E00;
+
+    long long_val = 2000000000L;
+    long long_hex = 0x77359400L;
+    long neg_long = -1500000000L;
+
+    unsigned long u_long_val = 4000000000UL;
+    unsigned long u_long_hex = 0xEE6B2800UL;
+
+    long long llong_val = 5000000000000000000LL;
+    long long llong_hex = 0x4563918244F40000LL;
+    long long neg_llong = -9000000000000000000LL;
+
+    unsigned long long u_llong_val = 18000000000000000000ULL;
+    unsigned long long u_llong_hex = 0xFA340F75E6C40000ULL;
+
+    float float_val = 3.14f;
+    double double_val = 3.1415926535;
+    long double long_double_val = 3.141592653589793238L;
+
+    bool bool_true = true;
+    bool bool_false = false;
+
+    return 0;
+}

@@ -1,0 +1,26 @@
+// #include <glib.h>
+// #include <stdio.h>
+ 
+// template2-glib.sc custom language syntax
+
+func print_interval(gpointer data) -> gboolean {
+
+    printf("Interval tick: \n");
+    
+    return TRUE;
+}
+
+func main() -> int {
+
+    GMainLoop* loop = g_main_loop_new(NULL, FALSE);
+    
+    guint interval_id = g_timeout_add(100, print_interval, NULL);
+    
+    printf("Starting interval loop...\n");
+
+    g_main_loop_run(loop);
+    
+    g_main_loop_unref(loop);
+    
+    return 0;
+}

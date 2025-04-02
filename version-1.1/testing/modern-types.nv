@@ -1,0 +1,29 @@
+
+
+// Var support
+var count = 10;
+
+
+// Vector support 
+vector<string> = ["Alice", "Bob"]; 
+names.push("Charlie");
+
+
+// Multiple values return 
+func getUser(user: string) -> val<User, Error> {
+
+    if (user != "someuser1") {
+
+        return User{}, Error{}
+    }
+
+    return User{}, Error{}
+}
+
+func main() {
+
+    var user, err = getUser("someuser");
+    if(!err) {
+        print("error !")
+    }
+}

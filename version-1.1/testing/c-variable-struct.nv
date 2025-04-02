@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <stdbool.h> // Required for the bool type
+
+// 1. Define the struct
+// This struct will contain members corresponding to the types
+// shown in the initial example.
+struct AllTypesData {
+    const char *string_data;  // Pointer to a string literal
+    char char_literal_data;
+    char char_as_num_data;
+    signed char s_char_data;
+    unsigned char u_char_data;
+    short short_data;
+    unsigned short u_short_data;
+    int int_data;
+    unsigned int u_int_data;
+    long long_data;
+    unsigned long u_long_data;
+    long long llong_data;
+    unsigned long long u_llong_data;
+    float float_data;
+    double double_data;
+    long double long_double_data;
+    bool bool_data;
+};
+
+int main() {
+
+    // 2. Declare an instance (variable) of the struct
+    struct AllTypesData my_data;
+
+    // 3. Set (assign) values to the members of the struct instance
+    printf("--- Setting Struct Members ---\n");
+
+    my_data.string_data = "This is a string in a struct";
+    my_data.char_literal_data = 'X';
+    my_data.char_as_num_data = 65; // Represents 'A'
+    my_data.s_char_data = -50;
+    // my_data.s_char_hex = 0xFE; // This is -2 in two's complement on most systems
+    my_data.u_char_data = 200;
+    // my_data.u_char_hex = 0xA5; // This is 165
+    my_data.short_data = -20000;
+    my_data.u_short_data = 50000;
+    my_data.int_data = -500000000;
+    my_data.u_int_data = 3000000000U; // Use U suffix for clarity if needed
+    my_data.long_data = -1500000000L;
+    my_data.u_long_data = 4000000000UL;
+    my_data.llong_data = -9000000000000000000LL;
+    my_data.u_llong_data = 18000000000000000000ULL;
+    my_data.float_data = 3.14f;
+    my_data.double_data = 3.1415926535;
+    my_data.long_double_data = 3.141592653589793238L;
+    my_data.bool_data = true;
+
+    printf("Struct members have been set.\n\n");
+
+    // 4. Get (access and print) the values from the struct members
+    printf("--- Getting Struct Members ---\n");
+
+    printf("String          : %s\n", my_data.string_data);
+    printf("Char Literal    : %c\n", my_data.char_literal_data);
+    printf("Char as Num     : %d ('%c')\n", my_data.char_as_num_data, my_data.char_as_num_data);
+    printf("Signed Char     : %hhd (0x%hhX)\n", my_data.s_char_data, my_data.s_char_data); // %hhd for signed char
+    printf("Unsigned Char   : %hhu (0x%hhX)\n", my_data.u_char_data, my_data.u_char_data); // %hhu for unsigned char
+    printf("Short           : %hd (0x%hX)\n", my_data.short_data, (unsigned short)my_data.short_data); // Cast for hex of negative
+    printf("Unsigned Short  : %hu (0x%hX)\n", my_data.u_short_data, my_data.u_short_data);
+    printf("Int             : %d (0x%X)\n", my_data.int_data, (unsigned int)my_data.int_data); // Cast for hex of negative
+    printf("Unsigned Int    : %u (0x%X)\n", my_data.u_int_data, my_data.u_int_data);
+    printf("Long            : %ld (0x%lX)\n", my_data.long_data, (unsigned long)my_data.long_data); // Cast for hex of negative
+    printf("Unsigned Long   : %lu (0x%lX)\n", my_data.u_long_data, my_data.u_long_data);
+    printf("Long Long       : %lld (0x%llX)\n", my_data.llong_data, (unsigned long long)my_data.llong_data); // Cast for hex
+    printf("Unsigned Long L : %llu (0x%llX)\n", my_data.u_llong_data, my_data.u_llong_data);
+    printf("Float           : %f\n", my_data.float_data);
+    printf("Double          : %lf\n", my_data.double_data); // %lf for double in printf
+    printf("Long Double     : %Lf\n", my_data.long_double_data); // %Lf for long double
+    printf("Boolean         : %s (%d)\n", my_data.bool_data ? "true" : "false", my_data.bool_data); // Print bool nicely
+
+    // Example: Change a value and print again
+    printf("\n--- Modifying a Member ---\n");
+    my_data.int_data = 98765;
+    my_data.bool_data = false;
+    printf("Modified Int    : %d\n", my_data.int_data);
+    printf("Modified Boolean: %s\n", my_data.bool_data ? "true" : "false");
+
+
+    return 0;
+}

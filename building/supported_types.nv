@@ -1,0 +1,135 @@
+
+
+// script.sc file
+
+// magical import that enables ALL C marcos and functions, so you can natively code C  
+import "virtual"
+
+// so the from and import are really just delcaring this for IR #include <stdio.h> 
+from "virtual" import "stdio"
+
+// so the from and import are really just delcaring this for IR #include <stdint.h>
+from "virtual" import "stdint"
+
+
+/*
+
+// C Fundamental Type Definitions
+// if virtual not declared then all C Fundamental types should error with undefined C marcos
+// something like "please add import "virtual" to use C types"
+
+// Integer Types
+char                    // 8-bit signed integer
+unsigned char           // 8-bit unsigned integer
+short                   // 16-bit signed integer
+unsigned short          // 16-bit unsigned integer
+int                     // Standard signed integer (typically 32-bit)
+unsigned int            // Standard unsigned integer
+long                    // Long signed integer (typically 32/64-bit)
+unsigned long           // Long unsigned integer
+long long               // Extended signed integer (64-bit)
+unsigned long long      // Extended unsigned integer
+
+// Floating Point Types
+float                   // 32-bit floating point
+double                  // 64-bit floating point
+long double             // Extended precision floating point
+
+// Pointer Types
+void*                   // Generic pointer type
+char*                   // Pointer to character (string)
+int*                    // Pointer to integer
+const char*             // Constant pointer to character
+
+// Array Declarations
+char arr[1024];         // Static array of characters
+int numbers[100];       // Static array of integers
+
+// Special Types
+size_t                  // Unsigned integer type for sizes
+ptrdiff_t               // Signed integer type for pointer arithmetic
+intptr_t                // Integer type large enough to hold a pointer
+uintptr_t               // Unsigned integer type large enough to hold a pointer
+
+// Structs
+struct SomeStruct {
+    int isReady;
+};
+
+*/
+
+
+
+struct SomeStruct {
+
+    int isReady;
+
+} myStruct;
+
+
+// functions args and return like this
+func someFunction(newValue const char *) -> int { 
+
+    printf("%s\n", newValue);
+
+    return 0;
+}  
+
+// main is always the init main
+// no return delared means void
+func main() {   
+
+    // Integer Type Examples
+    char charValue = -127;                  // 8-bit signed integer
+    unsigned char unsignedCharValue = 255;  // 8-bit unsigned integer
+    
+    short shortValue = 32767;               // 16-bit signed integer
+    unsigned short unsignedShortValue = 65535;  // 16-bit unsigned integer
+    
+    int intValue = 10;                      // Standard signed integer
+    unsigned int unsignedIntValue = 4294967295U;  // Standard unsigned integer
+    
+    long longValue = 2147483647L;           // Long signed integer
+    unsigned long unsignedLongValue = 4294967295UL;  // Long unsigned integer
+    
+    long long longLongValue = 9223372036854775807LL;  // Extended signed integer
+    unsigned long long unsignedLongLongValue = 18446744073709551615ULL;  // Extended unsigned integer
+
+    // Floating Point Type Examples
+    float floatValue = 3.14159f;            // 32-bit floating point
+    double doubleValue = 3.14159265358979;  // 64-bit floating point
+    long double longDoubleValue = 3.14159265358979L;  // Extended precision floating point
+
+    // Pointer Type Examples
+    void* genericPointer;                   // Generic pointer
+    char* stringPointer = "Hello, World!";  // Pointer to character (string)
+    int* intPointer = &intValue;            // Pointer to integer
+    const char* constantStringPointer = "Constant String";  // Constant pointer to character
+
+    // Array Declarations
+    char charArray[1024];                   // Static array of characters
+    int numberArray[100];                   // Static array of integers
+
+    // Special Type Examples
+    size_t arraySize = sizeof(charArray);   // Unsigned size type
+    ptrdiff_t pointerDifference;            // Signed pointer arithmetic type
+    intptr_t integerPointer;                // Integer type for pointer
+    uintptr_t unsignedIntegerPointer;       // Unsigned integer type for pointer
+
+    myStruct.isReady = 1;
+
+
+    const char* someValue = "Constant String";
+
+    someFunction(someValue);
+
+
+    // virtual import was set so now we can call any and all C functions
+    char buff[1024];
+    sprintf(buff, "%s", "ls");
+
+    system(buff);
+
+
+    return 0;
+}

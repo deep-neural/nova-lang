@@ -1,0 +1,29 @@
+
+
+
+
+
+
+Lexer (Lexical Analysis)
+- Breaks source code into tokens
+- Identifies individual language elements like keywords, identifiers, literals
+- Removes whitespace and comments
+
+Parser (Syntactic Analysis)
+- Takes tokens from lexer
+- Checks if tokens follow the language's grammatical rules
+- Builds a parse tree or syntax tree
+
+Abstract Syntax Tree (AST)
+- Simplifies the parse tree
+- Represents the structural and content semantics of the code
+
+Intermediate Representation (IR) - LLVM
+- Transforms AST into a lower-level, platform-independent representation
+
+lexer.go
+ast.go
+parser.go
+llvm-ir.go
+main.go
+

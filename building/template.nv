@@ -1,0 +1,101 @@
+var x: int = 42;
+var y: float = 3.14;
+var name: string = "Hello World";
+var isActive: bool = true;
+var numbers: [5]int;  // array of 5 integers
+var ptr: *int;        // pointer to an integer
+Function Definitions
+func add(x: int, y: int) -> int {
+    return x + y;
+}
+
+func greet(name: string) -> void {
+    printf("Hello, %s!\n", name);
+}
+
+func main() -> int {
+    var result = add(5, 3);
+    greet("World");
+    return 0;
+}
+Control Flow Structures
+func abs(x: int) -> int {
+    if (x < 0) {
+        return -x;
+    } else {
+        return x;
+    }
+}
+
+func countDown(n: int) -> void {
+    var i = n;
+    while (i > 0) {
+        printf("%d\n", i);
+        i = i - 1;
+    }
+}
+
+func processNumbers(max: int) -> void {
+    for (var i = 0; i < max; i = i + 1) {
+        if (i % 2 == 0) {
+            printf("%d is even\n", i);
+        } else {
+            printf("%d is odd\n", i);
+        }
+    }
+}
+Structs and User-Defined Types
+struct Person {
+    name: string;
+    age: int;
+    height: float;
+}
+
+func createPerson(name: string, age: int) -> Person {
+    var p: Person;
+    p.name = name;
+    p.age = age;
+    p.height = 0.0;
+    return p;
+}
+
+func printPerson(p: Person) -> void {
+    printf("Name: %s, Age: %d\n", p.name, p.age);
+}
+Pointers and Memory Management
+func increment(ptr: *int) -> void {
+    *ptr = *ptr + 1;
+}
+
+func allocateBuffer(size: int) -> *int {
+    return malloc(size * sizeof(int));
+}
+
+func freeBuffer(buffer: *int) -> void {
+    free(buffer);
+}
+External Function Calls
+extern func printf(format: string, ...) -> int;
+extern func malloc(size: int) -> *void;
+extern func free(ptr: *void) -> void;
+
+func main() -> int {
+    printf("The answer is %d\n", 42);
+    var buffer = malloc(100);
+    // Use buffer...
+    free(buffer);
+    return 0;
+}
+Comments
+// This is a single-line comment
+
+/*
+ * This is a
+ * multi-line
+ * comment
+ */
+
+func documented() -> void {
+    // Function implementation starts here
+    printf("This function has comments!\n");
+}

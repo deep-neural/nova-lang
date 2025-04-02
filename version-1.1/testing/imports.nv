@@ -1,0 +1,113 @@
+
+import "extern" from "stdio"
+
+struct Point { x: i32, y: i32 }
+
+
+func (s: String) to_c_string(): *const c_char { /* ... */ }
+func free_c_string(p: *const c_char) { stdlib.free(p as *mut void); }
+
+func main() {
+
+    // --- Basic Output ---
+
+    var name = "World";
+    var count = 5;
+
+    stdio.printf("Hello, %s! You have %d messages.\n", name.to_c_string(), count);
+
+    // Simpler string output
+    stdio.puts("This string will have a newline added by puts.");
+
+    // Single character output
+    stdio.putchar('X');
+    stdio.putchar('\n'); // Add a newline manually
+
+    // --- Basic Input (Use with extreme caution!) ---
+
+    var mut user_input: [c_char; 100]; // Fixed-size buffer on stack
+    var mut user_age: i32 = 0;
+
+    stdio.printf("Enter your name (max 99 chars): ");
+    // Using fgets is safer than gets! Reads up to size-1 chars or until newline.
+    // Reads into user_input buffer, max 100 bytes, from standard input.
+    // stdio.stdin is the predefined FILE* for standard input.
+    if stdio.fgets(user_input.ptr(), 100, stdio.stdin) == stdio.NULL {
+        stdio.fprintf(stdio.stderr, "Error reading name.\n"); // Output error to stderr
+        stdlib.exit(1);
+    }
+    // Note: fgets may include the newline if buffer space allows. May need trimming.
+    stdio.printf("You entered: %s", user_input.ptr()); // Print includes potential newline
+
+    stdio.printf("Enter your age: ");
+    // scanf is notoriously unsafe due to potential buffer overflows
+    // and issues if input doesn't match the format.
+    // It expects pointers to variables where it should store the result.
+    if stdio.scanf("%d", &mut user_age) != 1 { // Check if 1 item was successfully read
+        stdio.fprintf(stdio.stderr, "Error reading age.\n");
+        // Need to potentially clear input buffer here on error... C stdio is tricky!
+    } else {
+        stdio.printf("Your age is: %d\n", user_age);
+    }
+
+    // --- File Operations ---
+
+    var filename = "my_data.txt".to_c_string();
+    var file_mode_write = "w".to_c_string(); // Write mode (create/truncate)
+    var file_mode_read = "r".to_c_string();  // Read mode
+
+    // fopen returns a pointer to a FILE structure, or NULL on error.
+    // The type would be *mut stdio.FILE in MyLang.
+    var mut file_ptr: *mut stdio.FILE = stdio.fopen(filename, file_mode_write);
+
+    if file_ptr == stdio.NULL { // Always check fopen result!
+        stdio.perror("Failed to open file for writing"); // Prints system error message
+        stdlib.exit(1);
+    }
+
+    // Write formatted string to file
+    let p = Point { x: 10, y: 20 };
+    stdio.fprintf(file_ptr, "Point data: (%d, %d)\n", p.x, p.y);
+    // Write simple string to file
+    stdio.fputs("This is another line.\n", file_ptr);
+
+    // Flush output buffer (optional, often done automatically on close)
+    stdio.fflush(file_ptr);
+
+    // Close the file. Essential to release resources and ensure data is written.
+    stdio.fclose(file_ptr);
+    stdio.printf("Successfully wrote to %s\n", filename);
+
+    // Now, read from the file
+    file_ptr = stdio.fopen(filename, file_mode_read);
+    if file_ptr == stdio.NULL {
+        stdio.perror("Failed to open file for reading");
+        stdlib.exit(1);
+    }
+
+    stdio.printf("Reading from %s:\n", filename);
+    let mut line_buffer: [c_char; 256];
+    // Read lines until fgets returns NULL (EOF or error)
+    while stdio.fgets(line_buffer.ptr(), 256, file_ptr) != stdio.NULL {
+        stdio.printf("Read line: %s", line_buffer.ptr()); // Print line (includes newline)
+    }
+
+    // Check if loop ended due to error vs EOF (End Of File)
+    if stdio.ferror(file_ptr) != 0 {
+        stdio.fprintf(stdio.stderr, "Error occurred during file reading.\n");
+    }
+
+    // Close the reading file handle
+    stdio.fclose(file_ptr);
+
+    // --- Useful Constants ---
+    // stdio.stdout, stdio.stdin, stdio.stderr (predefined *FILE)
+    // stdio.EOF (integer, usually -1, returned by functions like getchar on end-of-file)
+    // stdio.NULL (null pointer constant)
+    // stdio.SEEK_SET, stdio.SEEK_CUR, stdio.SEEK_END (for fseek)
+
+    // Remember to free C strings if allocated by to_c_string()
+    // free_c_string(filename);
+    // free_c_string(file_mode_write);
+    // free_c_string(file_mode_read);
+}

@@ -1,0 +1,30 @@
+func quit_timeout(gpointer loop_ptr) -> gboolean {
+    printf("Quitting main loop...\n");
+    g_main_loop_quit(loop_ptr);
+    return FALSE; // Don't repeat this timeout
+}
+
+func print_interval(gpointer data) -> gboolean {
+    printf("Interval tick!\n");
+    return TRUE; // Continue the timeout
+}
+
+func main() -> int {
+    GMainLoop* loop = g_main_loop_new(NULL, FALSE);
+    
+    printf("Starting interval loop...\n");
+    
+    // Add the print interval (every 100ms)
+    guint interval_id = g_timeout_add(100, print_interval, NULL);
+    
+    // Add a timeout to quit after 5 seconds
+    g_timeout_add(5000, quit_timeout, loop);
+    
+    g_main_loop_run(loop);
+    
+    printf("Main loop finished!\n");
+    
+    g_main_loop_unref(loop);
+    
+    return 0;
+}

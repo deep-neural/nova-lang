@@ -1,0 +1,20 @@
+
+
+
+// Build your IR like C (simple, portable), add features like Rust (safe, expressive).
+
+
+func main() -> int {
+
+    vector<int> *v = vector<int>{1, 2, 3};
+
+    var v = vector<int>{1, 2, 3};
+
+    vector<const char *> items;
+
+    const char *str = "Ok";
+
+    items.push(str);
+
+    return 0;
+}

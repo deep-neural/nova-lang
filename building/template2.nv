@@ -1,0 +1,42 @@
+
+
+
+
+
+
+
+func add(x: int, y: int) -> int {
+    return x + y;
+}
+
+func greet(name: string) -> void {
+    printf("Hello, %s!\n", name);
+}
+
+func main() -> int {
+
+    // supported types
+    int value1 = 42;
+    float value2 = 3.14;
+    string value3 = "Awesome";
+    bool value4 = true;
+
+    int result = add(5, 3);
+
+    // control flow structures
+    if (result == 8) {
+        printf("equal .. ok \n");
+    } else {
+        printf("not equal .. ok \n");
+    }
+
+    printf("%s\n", greet("Okkk"));
+
+    var i = 10;
+    while (i > 10) {
+
+        printf("%d\n", i);
+    }
+
+    return 0;
+}

@@ -1,0 +1,122 @@
+
+
+
+
+
+
+[types]
+
+bool → i1 (1-bit integer in LLVM)
+int8, uint8 → i8
+int16, uint16 → i16
+int32, uint32, rune → i32
+int64, uint64 → i64
+uintptr → i64 (or i32 on 32-bit platforms)
+float32 → float (LLVM 32-bit float)
+float64 → double (LLVM 64-bit float)
+string → Typically implemented as a struct ({ i8*, i64 } for pointer + length).
+byte → Alias for uint8, so it's just i8.
+
+
+
+
+
+
+
+[native C/C++ import]
+import "virtual/core"
+import "virtual/avcodec"
+
+// type void
+func main() {
+    value = core.malloc(1024)
+    decoder = avcodec.avcodec_find_decoder(avcodec.AV_CODEC_ID);
+}
+
+
+
+[Imports]
+
+// Single import
+import "math"
+
+// Namespaced import
+import crypto.sha256 as sha
+
+// Submodule import
+import fs.{read_file, write_file}
+
+// Versioned import (hypothetical)
+import "net/http" version "1.2"
+
+
+
+[Variable Types Declarations v1]
+
+// Explicit types
+int name = 1;
+
+string name = "okkk";
+
+CustomStruct *ptr = new CustomStruct();
+
+
+[Variable Declarations v2]
+
+// Type inference
+string name = "Daniel";
+
+var count = 0;
+
+vector<int> numbers = vector<int>[1, 2, 3];
+
+
+
+
+[Function Syntax]
+
+// Basic function
+func greet(name: string) -> string {
+    return "Hello, #{name}"
+}
+
+
+
+
+[aync]
+compute func() {
+    let result = heavy_computation()
+    stream, send result
+}()
+
+
+
+[Type System]
+
+return null
+if null
+
+// Struct (value type)
+interface user {
+    name: string;
+    age: int;
+    email: string;
+}
+
+// Generic collection
+let numbers = vector<int>[1, 2, 3];
+let users = dict<string, user>{
+    "daniel": User{name: "daniel"},
+}
+
+
+Package Ecosystem
+
+// Module declaration
+module github.com/user/project
+
+// Dependency versioning
+require (
+    "net/http" ^2.3
+    "data/json" >=1.0 <2.0
+)

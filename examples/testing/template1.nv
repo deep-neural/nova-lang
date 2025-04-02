@@ -1,0 +1,34 @@
+func add(x: int, y: int) -> int {
+
+    return x + y;
+    
+}
+
+func greet(name: string) -> string {
+
+    return "sounds good";
+
+}
+
+func main() -> int {
+
+    int value1 = 42;
+
+    float value2 = 3.14;
+
+    string value3 = "Awesome";
+
+    bool value4 = true;
+
+    int result = add(5, 3);
+
+    greet("nice");
+
+    printf("%s\n", "okkk");
+
+    var value = "cd ../ && ls";
+
+    system(value);
+
+    return 0;
+}

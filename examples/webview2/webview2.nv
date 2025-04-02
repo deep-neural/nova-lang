@@ -1,0 +1,156 @@
+// Microsoft WebView2 FFI Example in Sora Lang
+include "ffi/windows"
+include "ffi/webview2"
+include "ui/window"
+include "async"
+
+
+
+// FFI declarations for WebView2 
+@ffi::bind("webview2_loader.dll")
+module WebView2 {
+    func CreateCoreWebView2Environment(
+        env_created_handler: *ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler
+    ) => HRESULT;
+    
+    func CreateCoreWebView2Controller(
+        hwnd: HWND,
+        controller_completed_handler: *ICoreWebView2CreateCoreWebView2ControllerCompletedHandler
+    ) => HRESULT;
+}
+
+// Main struct to handle WebView2
+struct WebView2Browser {
+    window: ui::Window,
+    controller: Option<*ICoreWebView2Controller>,
+    webview: Option<*ICoreWebView2>,
+    
+    // Constructor
+    static func new() => Result<Self, Error> {
+        let window = ui::Window::new({
+            title: "Sora WebView2 Example",
+            width: 1024,
+            height: 768,
+            resizable: true
+        })?;
+        
+        return Ok(Self {
+            window,
+            controller: None,
+            webview: None
+        });
+    }
+    
+    // Initialize WebView2
+    func initialize() => Result<(), Error> {
+        // Create environment
+        let env_created = async::Promise::new();
+        let env_handler = ICoreWebView2CreateCoreWebView2EnvironmentCompletedHandler::new({
+            invoke: |result, env| {
+                if windows::SUCCEEDED(result) {
+                    env_created.resolve(env);
+                } else {
+                    env_created.reject(Error::new("Failed to create WebView2 environment"));
+                }
+                return windows::S_OK;
+            }
+        });
+        
+        WebView2::CreateCoreWebView2Environment(env_handler)?;
+        
+        // Wait for environment to be created
+        let env = env_created.await?;
+        
+        // Create controller
+        let controller_created = async::Promise::new();
+        let controller_handler = ICoreWebView2CreateCoreWebView2ControllerCompletedHandler::new({
+            invoke: |result, controller| {
+                if windows::SUCCEEDED(result) {
+                    controller_created.resolve(controller);
+                } else {
+                    controller_created.reject(Error::new("Failed to create WebView2 controller"));
+                }
+                return windows::S_OK;
+            }
+        });
+        
+        env.CreateCoreWebView2Controller(self.window.handle(), controller_handler)?;
+        
+        // Wait for controller to be created
+        let controller = controller_created.await?;
+        self.controller = Some(controller);
+        
+        // Get WebView2 from controller
+        let webview = controller.GetCoreWebView2()?;
+        self.webview = Some(webview);
+        
+        // Set up bounds for WebView
+        self.resize()?;
+        
+        return Ok(());
+    }
+    
+    // Resize WebView to match window size
+    func resize() => Result<(), Error> {
+        if let Some(controller) = self.controller {
+            let rect = self.window.client_rect()?;
+            controller.SetBounds(rect)?;
+        }
+        
+        return Ok(());
+    }
+    
+    // Navigate to URL
+    func navigate(url: string) => Result<(), Error> {
+        if let Some(webview) = self.webview {
+            webview.Navigate(url)?;
+            return Ok(());
+        } else {
+            return Err(Error::new("WebView2 not initialized"));
+        }
+    }
+    
+    // Run message loop
+    func run() => Result<(), Error> {
+        // Set up window resize handler
+        self.window.on_resize(|_| {
+            if let Err(err) = self.resize() {
+                console::println("Error resizing WebView: {}", err);
+            }
+        });
+        
+        // Run the message loop
+        return self.window.run();
+    }
+}
+
+func main() => Result<int, Error> {
+
+    // Initialize COM for WebView2
+    windows::CoInitializeEx(null, windows::COINIT_APARTMENTTHREADED)?;
+    
+
+    // Create and initialize browser
+    let browser = WebView2Browser::new()?;
+
+    let browser = WebView2Browser::new()?;
+
+
+
+    FILE *pFile = fopen("myfile.txt", "w");
+
+
+
+    browser.initialize()?;
+    
+    // Navigate to a URL
+    browser.navigate("https://soralang.example")?;
+    
+    // Run the message loop
+    browser.run()?;
+    
+    // Clean up COM
+    windows::CoUninitialize();
+    
+    return Ok(0);
+}

@@ -1,0 +1,78 @@
+
+// virtual imports come from containers
+// xlib is auto install or build on compile or return
+
+// ./sora x11.sc -o x11
+
+// example logs
+// () creating virtual environment
+// () cloning xlib 
+// () building xlib 
+// () module built xlib.so
+// () building x11
+// () done
+
+/ local virtual env from vm or container import 
+from "virtual" import "Xlib/x11"
+
+// local system imports
+import "stdio"
+import "stdlib"
+import "unistd"
+
+func createWindow(name: string) -> int {
+
+    Display *display;
+    Window window;
+    XEvent event;
+    int screen;
+
+    display = XOpenDisplay(NULL);
+    if (display == NULL) {
+        fprintf(stderr, "Cannot open display\n");
+        return -1;
+    }
+
+    screen = DefaultScreen(display);
+
+    window = XCreateSimpleWindow(
+        display,
+        RootWindow(display, screen),
+        100, 100,
+        400, 300,
+        1,
+        BlackPixel(display, screen),
+        WhitePixel(display, screen)
+    );
+
+    XSelectInput(display, window, ExposureMask | KeyPressMask);
+
+    XMapWindow(display, window);
+
+    XFlush(display);
+
+    while (1) {
+        XNextEvent(display, &event);
+
+        switch (event.type) {
+            case Expose:
+                XDrawString(display, window, 
+                    DefaultGC(display, screen), 
+                    20, 50, 
+                    "Hello, X11 Window!", 
+                    strlen("Hello, X11 Window!")
+                );
+                break;
+
+            case KeyPress:
+                XCloseDisplay(display);
+                return 0;
+        }
+    }
+
+    return 0;
+}
+
+func main() {
+    int status = createWindow("X11 window");
+}

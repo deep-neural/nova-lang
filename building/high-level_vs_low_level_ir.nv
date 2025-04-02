@@ -1,0 +1,13 @@
+
+
+/* C-level (conceptual) */
+=> GMainLoop only high level
+GMainLoop *loop = g_main_loop_new(NULL, FALSE);
+
+/* LLVM IR (implementation) */
+%loop = call i8* @g_main_loop_new(i8* null, i32 0)
+store i8* %loop, i8** @main_loop
+
+
+
+

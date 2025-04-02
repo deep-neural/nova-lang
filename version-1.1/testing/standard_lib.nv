@@ -1,0 +1,157 @@
+
+
+
+
+// Call primitive
+that was gen by golang IR 
+
+
+// 
+func Split(s: String, separator: String) -> List<String> {
+    var result: List<String>; // Assuming List is a type in your language
+    var start = 0;
+    while (true) {
+        var index = Index(s, separator, start); // Call primitive Index function
+        if (index < 0) { // Or Option type check
+            result.append(Slice(s, start, s.len())); // Call primitive Slice/Append/Len
+            break;
+        }
+        result.append(Slice(s, start, index)); // Call primitive Slice/Append
+        start = index + separator.len();      // Call primitive Len
+    }
+    return result;
+}
+
+
+
+
+
+
+Module : strings
+
+import "strings" as "str"
+
+
+Title: RuneCount
+Import: import "strings"
+var count = str.RuneCount(my_string);
+
+Title: ByteLen
+Import: import "strings"
+var bytes = strings.ByteLen(my_string);
+
+Title: IsEmpty
+Import: import "strings"
+var empty = strings.IsEmpty(my_string); // if empty { ... }
+
+Title: RuneAtByte (Potentially unsafe/complex - Consider if needed)
+Import: import "strings"
+var rune_option: Option<Rune> = strings.RuneAtByte(my_string, 5);
+
+Title: Slice (Byte-based)
+Import: import "strings"
+var substring = strings.Slice(my_string, 5, 10);
+
+Title: Contains
+Import: import "strings"
+var found = strings.Contains(log_entry, "ERROR"); // if found { ... }
+
+Title: HasPrefix
+Import: import "strings"
+var is_secure = strings.HasPrefix(url, "https://");
+
+Title: HasSuffix
+Import: import "strings"
+var is_image = strings.HasSuffix(filename, ".png");
+
+Title: Index (Byte-based)
+Import: import "strings"
+var index = strings.Index(my_string, "separator"); // Returns Option<Int> or similar
+
+Title: LastIndex (Byte-based)
+Import: import "strings"
+var last_index = strings.LastIndex(path, "/"); // Returns Option<Int> or similar
+
+Title: Count
+Import: import "strings"
+var comma_count = strings.Count(csv_line, ",");
+
+Title: ReplaceAll
+Import: import "strings"
+var updated_string = strings.ReplaceAll(template, "{{name}}", user_name);
+
+Title: Replace (N Occurrences)
+Import: import "strings"
+var replaced_twice = strings.Replace(my_string, "old", "new", 2);
+
+Title: ToLower
+Import: import "strings"
+var lower_case_tag = strings.ToLower(tag);
+
+Title: ToUpper
+Import: import "strings"
+var upper_case_code = strings.ToUpper(code);
+
+Title: TrimSpace
+Import: import "strings"
+var clean_input = strings.TrimSpace(user_input);
+
+Title: Trim
+Import: import "strings"
+var stripped_path = strings.Trim(path, "/");
+
+Title: TrimPrefix
+Import: import "strings"
+var filename = strings.TrimPrefix(path, "/data/");
+
+Title: TrimSuffix
+Import: import "strings"
+var base_name = strings.TrimSuffix(filename, ".log");
+
+Title: Repeat
+Import: import "strings"
+var separator = strings.Repeat("-", 10);
+
+Title: Split
+Import: import "strings"
+vector<string> = strings.Split(data, ",");
+
+Title: SplitN
+Import: import "strings"
+vector<string> = strings.SplitN(data, ":", 2);
+
+Title: Join
+Import: import "strings"
+vector<string> csv_line = strings.Join(list_of_fields, ",");
+
+
+
+
+Module: "convert" (Or perhaps integrated with type definitions like Int.Parse)
+
+Title: ToBytes (UTF-8)
+Import: import "convert" (or potentially built-in cast)
+var byte_data: Bytes = convert.ToBytes(my_string);
+
+Title: FromBytes (UTF-8, Safe)
+Import: import "convert" (or potentially built-in cast)
+var my_string_result: Result<String, Error> = convert.FromBytes(byte_data);
+
+Title: ParseInt
+Import: import "convert"
+var num_result: Result<Int, ParseError> = convert.ParseInt(input_str, 10);
+
+Title: ParseFloat
+Import: import "convert"
+var val_result: Result<Float, ParseError> = convert.ParseFloat(input_str, 64);
+
+
+
+Module: "view"
+
+Title: Format (Sprintf-like)
+Import: import "view"
+string message = view.Format("User %d logged in from %s", user_id, ip_address);
+
+Import: import "view"
+string message = view.Sprintf("User %d logged in from %s", user_id, ip_address);

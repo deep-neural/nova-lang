@@ -1,0 +1,7 @@
+
+
+
+
+// Direct cast syntax, implies a defined conversion
+
+const char *str = cast<const char *>(my_lang_string);

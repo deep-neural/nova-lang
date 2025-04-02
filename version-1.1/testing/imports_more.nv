@@ -1,0 +1,132 @@
+
+
+
+
+import "foundation"
+
+
+import "h264" from "video/codec"
+
+import "av1" from "video/codec"
+
+
+Core 
+import "core"
+Primitives, memory management, compiler intrinsics, and base types (int, string, bool, etc.).
+
+import "collections"
+Data structures: dynamic arrays (Vec), hash maps (Dict), linked lists, sets, queues.
+
+import "math"
+Math functions (sin, sqrt), constants, random number generation.
+
+import "errors"
+Error handling with Result/Option types, custom exceptions, panic recovery.
+
+I/O & System Interaction
+import "io"
+File/stream I/O, readers/writers, buffers.
+
+import "fs"
+File system operations (create, delete, metadata).
+
+import "os"
+OS interaction: environment variables, process management, signals.
+
+Concurrency & Parallelism
+import "thread"
+Threads, mutexes, atomic operations.
+
+import "channel"
+Message-passing concurrency (MPSC channels).
+
+Networking
+import "net"
+TCP/UDP sockets, DNS resolution.
+Inspired by: Go net, Rust std::net
+
+import "http"
+HTTP client/server, REST APIs, WebSocket support.
+
+Text & Data
+import "str"
+String manipulation, regex, Unicode/UTF-8 support.
+
+import "serialize"
+JSON, XML, YAML parsing/serialization.
+
+Advanced Utilities
+import "time"
+Timers, dates, time zones.
+
+import "crypto"
+Hashing (SHA-256), encryption (AES), TLS/SSL.
+
+import "reflect"
+Runtime reflection, type introspection, dynamic codegen.
+
+import "test"
+Unit testing, benchmarks, mocking.
+
+System & Low-Level
+import "process"
+Subprocess management (spawning, pipes, signals).
+
+import "path"
+Cross-platform path manipulation (join, split, normalize).
+
+import "signal"
+OS signal handling (SIGINT, SIGTERM).
+
+Async & Events
+import "async"
+Async/await, futures, event loops, and task scheduling.
+
+import "event"
+Event-driven programming (observers, pub-sub).
+
+Data & Encoding
+import "encoding"
+Base64, hex, CSV, and binary encoding/decoding.
+
+import "compress"
+Compression (gzip, zlib) and archiving.
+
+Developer Tools
+import "log"
+Structured logging (debug, info, error levels).
+
+import "cli"
+Command-line argument parsing and terminal UI helpers.
+
+import "debug"
+Debugging utilities (stack traces, memory dumps).
+
+Advanced Primitives
+import "iter"
+Lazy iterators, generators, and sequence operations.
+
+import "macros"
+Compile-time metaprogramming and code generation.
+
+
+Platform & Extensibility
+import "ffi"
+Foreign Function Interface (C ABI interop).
+
+import "plugin"
+Dynamic loading of shared libraries/plugins.
+
+Localization
+import "i18n"
+Internationalization (date/number formatting, translation).
+
+Missing Niche Utilities
+import "term"
+Terminal control (colors, cursor movement, input handling).
+
+import "rand"
+Advanced random number generation (distributions, shuffling).
+
+import "geo"
+Geospatial operations (coordinates, distances).
