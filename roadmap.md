@@ -1,10 +1,10 @@
 
 
 
-# Sora C/C++ support
+# Nova C/C++ support
 The idea should be to add just enough support for c syntax to satisfy c lib files. 
 
-# Sora types to C types
+# Nova types to C types
 Distinct types and provide mechanisms to convert to/from C-compatible representations at the boundary.
 
 # Global namespace pollution
